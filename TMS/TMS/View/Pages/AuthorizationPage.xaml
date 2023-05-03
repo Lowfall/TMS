@@ -1,0 +1,24 @@
+﻿<Page x:Class="TMS.View.Pages.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TMS.View.Pages"
+      xmlns:vm  ="clr-namespace:TMS.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="380"
+      Title="AuthorizationPage">
+    <Page.Resources>
+        <ResourceDictionary Source="/Dictionaries/DarkTheme.xaml"/>
+    </Page.Resources>
+    <Grid>
+        <Label Content="AUTHORIZATION" Grid.Row="1" HorizontalAlignment="Center" FontSize="30" Foreground="{StaticResource textColor}" VerticalAlignment="Top" Margin="-10"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="0 40 0 0"> 
+            <Label Content="Login" FontSize="25" FontWeight="Bold" Foreground="{StaticResource textColor}" HorizontalAlignment="Center"></Label>
+            <TextBox x:Name="LoginBox"  Style="{StaticResource InputBox}" Text="{Binding ClientLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Label Content="Password" FontSize="25" FontWeight="Bold" Foreground="{StaticResource textColor}" HorizontalAlignment="Center"></Label>
+            <TextBox x:Name="PasswordBox"  Style="{StaticResource InputBox}" Text="{Binding ClientPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Content="Authorize" Margin="30" Style="{StaticResource EnteringButton}" Command="{Binding ShowAllClientsCommand}"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
