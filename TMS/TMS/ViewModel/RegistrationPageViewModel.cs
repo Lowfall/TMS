@@ -56,7 +56,6 @@ namespace TMS.ViewModel
                 try
                 {
                     await Task.Run(Add);
-                    MessageBox.Show("You have made an account, now, please authorize");
                 }
                 catch (Exception e)
                 {
@@ -76,9 +75,18 @@ namespace TMS.ViewModel
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
+                foreach(var item in uow.Clients.GetAll().ToList())
+                {
+                    if(item.Login == ClientLogin)
+                    {
+                        MessageBox.Show("This user is already registered");
+                        return;
+                    }
+                }
                 var client = new Client(ClientLogin, ClientPassword.GetHashCode().ToString());
                 uow.Clients.Add(client);
                 uow.Save();
+                MessageBox.Show("You have made an account, now, please authorize");
             }
         }
 

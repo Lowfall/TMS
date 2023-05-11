@@ -39,36 +39,43 @@ namespace TMS.ViewModel
 
         private void ShowClients()
         {
-            using (UnitOfWork uow = new UnitOfWork())
+            if (ClientLogin != null && ClientLogin != "" && ClientPassword != null && ClientPassword != "")
             {
-                var clients = uow.Clients.GetAll().ToList<Client>();
-                bool state = false;
-                foreach (var client in clients)
+                using (UnitOfWork uow = new UnitOfWork())
                 {
-                    if (client.Login == ClientLogin && client.Password == ClientPassword.GetHashCode().ToString())
+                    var clients = uow.Clients.GetAll().ToList<Client>();
+                    bool state = false;
+                    foreach (var client in clients)
                     {
-                        if (client.State == true)
+                        if (client.Login == ClientLogin && client.Password == ClientPassword.GetHashCode().ToString())
                         {
-                            state = true;
-                            ActualAccount = client;
-                        }
-                        else
-                        {
-                            MessageBox.Show("This account was banned");
-                            return;
+                            if (client.State == true)
+                            {
+                                state = true;
+                                ActualAccount = client;
+                            }
+                            else
+                            {
+                                MessageBox.Show("This account was banned");
+                                return;
+                            }
                         }
                     }
+                    if (state == true)
+                    {
+                        MessageBox.Show("You enter account");
+                        AccountActivated = true;
+                        new WindowService().CloseWindow();
+                    }
+                    else
+                    {
+                        MessageBox.Show("There is no such user");
+                    }
                 }
-                if (state == true)
-                {
-                    MessageBox.Show("You are enter account");
-                    AccountActivated = true;
-                    new WindowService().CloseWindow();
-                }
-                else
-                {
-                    MessageBox.Show("There is no such user");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Fill the boxes");
             }
         }
 

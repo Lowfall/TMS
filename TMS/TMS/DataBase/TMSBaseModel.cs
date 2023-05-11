@@ -15,5 +15,7 @@ namespace TMS.DataBase
         public DbSet<Client> Clients { get; set; }  
         public DbSet<Admin> Admins { get; set; }
         public DbSet<TaskPage> Tasks { get; set; }
+        public DbSet<DayPlanTask> DayPlanTasks { get; set; }
+        public DbSet<Meeting> Meetings { get; set; }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TMS.DataBase;
 using TMS.Repositories;
+
 
 namespace TMS.UOW
 {
@@ -13,7 +15,20 @@ namespace TMS.UOW
         private TMSBaseModel db = new TMSBaseModel();
         private ClientRepository clientRepository;
         private TaskPagesRepository tasksRepository;
+        private DayPlanTaskRepository dayPlanTaskRepository;
+        private MeetingRepository meetingRepository;
 
+        public MeetingRepository Meetings
+        {
+            get
+            {
+                if (meetingRepository == null)
+                {
+                    meetingRepository = new MeetingRepository(db);
+                }
+                return meetingRepository;
+            }
+        }
         public ClientRepository Clients
         {
             get {
@@ -32,6 +47,17 @@ namespace TMS.UOW
                     tasksRepository = new TaskPagesRepository(db);
                 }
                 return tasksRepository;
+            }
+        }
+
+        public DayPlanTaskRepository DayPlanTasks {
+            get
+            {
+                if(dayPlanTaskRepository == null)
+                {
+                    dayPlanTaskRepository = new DayPlanTaskRepository(db);
+                }
+                return dayPlanTaskRepository;
             }
         }
 

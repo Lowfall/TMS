@@ -11,20 +11,18 @@
         <ResourceDictionary Source="/Dictionaries/DarkTheme.xaml"/>
     </Window.Resources>
     <Grid>
-        <Border Background="{StaticResource backLeftMenuBar}" CornerRadius="20" BorderBrush="{StaticResource textColor}" BorderThickness="3">
-            <Border Background="{StaticResource backLeftMenuBar}" CornerRadius="20" BorderBrush="{StaticResource textColor}" BorderThickness="2" Margin="-1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.08*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Button Content="Close" HorizontalAlignment="Right" Command="{Binding CloseWindowCommand}" Style="{StaticResource closeButton}"></Button>
-                    <Frame Grid.Row="1" Margin="30" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden">
+        <Border Background="{StaticResource backLeftMenuBar}" CornerRadius="20" BorderBrush="Transparent" BorderThickness="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.08*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Content="Close" HorizontalAlignment="Right" Command="{Binding CloseWindowCommand}" Style="{StaticResource closeButton}"></Button>
+                <Frame Grid.Row="1" Margin="30" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden">
 
-                    </Frame>
-                    <Button Content="{Binding AuthText}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding ChangingPageCommand}" Margin=" 0 0 40 20 " Style="{StaticResource ChangingButton}"></Button>
-                </Grid>
-            </Border>
+                </Frame>
+                <Button Content="{Binding AuthText}" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding ChangingPageCommand}" Margin=" 0 0 40 20 " Style="{StaticResource ChangingButton}"></Button>
+            </Grid>
         </Border>
     </Grid>
 </Window>

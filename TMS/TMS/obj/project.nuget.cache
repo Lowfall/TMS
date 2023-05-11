@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "UFHfgmLUbsLCYJfDhx14HigaiRHn7D+bg8IvxXtgCTIxzKE+dx4cMT8O5TQkx+ox3vLzWsq8tPTzptdjIsawtw==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\TMS\\TMS\\TMS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.vcrtforwarders.140\\1.0.6\\microsoft.vcrtforwarders.140.1.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
