@@ -64,5 +64,10 @@ namespace TMS.ViewModel
                 OnPropertyChanged("Note");
             }
         }
+
+        public int PageId
+        {
+            get { return meeting.PageId; }
+        }
     }
 }

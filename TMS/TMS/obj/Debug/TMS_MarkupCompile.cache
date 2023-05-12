@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\TMS\TMS\App.xaml
-91285642567
+101410627209
 
-38-82589865
+402046030752
 135717747271
-Dictionaries\DarkTheme.xaml;View\AuthorizationWindow.xaml;View\MainWindow.xaml;View\Pages\AuthorizationPage.xaml;View\Pages\DayPlanPage.xaml;View\Pages\MeetingsPage.xaml;View\Pages\PlansForFuturePage.xaml;View\Pages\PomodoroPage.xaml;View\Pages\RegistrationPage.xaml;
+Dictionaries\DarkTheme.xaml;View\AuthorizationWindow.xaml;View\MainWindow.xaml;View\Notification.xaml;View\Pages\AuthorizationPage.xaml;View\Pages\DayPlanPage.xaml;View\Pages\MeetingsPage.xaml;View\Pages\PlansForFuturePage.xaml;View\Pages\PomodoroPage.xaml;View\Pages\RegistrationPage.xaml;
 
 False
 

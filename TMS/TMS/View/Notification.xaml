@@ -1,0 +1,34 @@
+﻿<Window x:Class="TMS.View.Notification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TMS.View"
+        mc:Ignorable="d"
+        Title="Notification" Height="170" Width="510" WindowStyle="None" AllowsTransparency="True" Background="Transparent"  WindowStartupLocation="Manual">
+    <Window.Resources>
+        <ResourceDictionary Source="/Dictionaries/DarkTheme.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <Border Background="{StaticResource backLeftMenuBar}" CornerRadius="40">
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Resources/user.png"></Image>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="YOU HAVE GOT A MEETING TODAY" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource textColor}"></TextBlock>
+                    <WrapPanel Margin="0 10 0 0">
+                        <TextBlock  Text="You have meeting with " Foreground="{StaticResource textColor}" FontSize="15"></TextBlock>
+                        <TextBlock  Text="{Binding Name}" Foreground="{StaticResource textColor}" FontSize="15"></TextBlock>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 45 0 0">
+                        <TextBlock  Text="Your meeting will be at " Foreground="{StaticResource textColor}" FontSize="15"></TextBlock>
+                        <TextBlock  Text="{Binding DateAndTime}" Foreground="{StaticResource textColor}" FontSize="15"></TextBlock>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

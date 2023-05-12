@@ -60,3 +60,5 @@ D:\Projects\TMS\TMS\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
 D:\Projects\TMS\TMS\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Projects\TMS\TMS\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Projects\TMS\TMS\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\Projects\TMS\TMS\obj\Debug\View\Notification.g.cs
+D:\Projects\TMS\TMS\obj\Debug\View\Notification.baml
