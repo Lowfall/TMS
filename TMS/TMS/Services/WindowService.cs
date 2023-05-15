@@ -26,5 +26,35 @@ namespace TMS.Services
             }
         }
 
+        public void CloseAdmin()
+        {
+            var window = Application.Current.Windows.OfType<AdminWindow>().SingleOrDefault(x => x.IsActive);
+
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
+
+        public void HideMainWindow()
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().SingleOrDefault(x => x.IsActive);
+
+            if (window != null)
+            {
+                window.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ShowMainWindow()
+        {
+            var window = Application.Current.Windows.OfType<MainWindow>().SingleOrDefault(x => x.IsActive);
+
+            if (window != null)
+            {
+                window.Visibility = Visibility.Visible;
+            }
+        }
+
     }
 }

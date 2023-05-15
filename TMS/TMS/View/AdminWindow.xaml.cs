@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TMS.ViewModel;
 
-namespace TMS.View.Pages
+namespace TMS.View
 {
     /// <summary>
-    /// Interaction logic for PomodoroPage.xaml
+    /// Interaction logic for AdminWindow.xaml
     /// </summary>
-    public partial class PomodoroPage : Page
+    public partial class AdminWindow : Window
     {
-        public PomodoroPage()
+        public AdminWindow()
         {
-            DataContext = new PomodoroPageViewModel();
+            DataContext = new AdminPageViewModel();
             InitializeComponent();
         }
     }

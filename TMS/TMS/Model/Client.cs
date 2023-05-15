@@ -19,6 +19,7 @@ namespace TMS.Model
         [RegularExpression(@"(?=.*?[0-9]).{6,15}$", ErrorMessage = ("Some characters are not allowed"))]
         public string Password { get; set; }
         public bool State { get; set; }
+        public string Reason { get; set; }  
 
         public Client()
         {

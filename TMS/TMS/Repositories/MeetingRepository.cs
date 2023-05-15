@@ -8,7 +8,7 @@ using TMS.Model;
 
 namespace TMS.Repositories
 {
-    public class MeetingRepository
+    public class MeetingRepository : IRepository<Meeting>
     {
          private TMSBaseModel _baseContext;
 

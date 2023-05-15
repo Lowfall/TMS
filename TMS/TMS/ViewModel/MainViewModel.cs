@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Security.Policy;
 using System.Windows.Controls;
 using TMS.View.Pages;
+using TMS.View;
+using  MessageBoxForm = System.Windows.Forms;
 
 namespace TMS.ViewModel
 {
@@ -33,8 +35,9 @@ namespace TMS.ViewModel
         public ICommand OpenWindowCommand { get; set; }
         public ICommand AddPageCommand { get; set; }
         public ICommand SearchCommand { get; set; }
-
         public ICommand ChangeCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
+
 
         
         public static int PageId;
@@ -50,7 +53,10 @@ namespace TMS.ViewModel
         {
             get { return selectedPage; }
             set { selectedPage = value;
-                PageId = selectedPage.PageId;
+                if (selectedPage !=null)
+                {
+                    PageId = selectedPage.PageId;
+                }
                 OnPropertyChanged("SelectedPage");
             }
         }
@@ -89,7 +95,7 @@ namespace TMS.ViewModel
         }
         public Style AuthButtonStyle
         {
-            get { return authButtonStyle; }
+            get { return authButtonStyle;}
             set
             {
                 authButtonStyle = value;
@@ -106,17 +112,47 @@ namespace TMS.ViewModel
         }
         private void OnOpenWindow()
         {
-            if(AccountActivated == true)
+            if (AdminActivated == true)
             {
-                var dictionary = new ResourceDictionary();
-                dictionary.Source = new Uri("Dictionaries/DarkTheme.xaml", UriKind.RelativeOrAbsolute);
-                AuthButtonStyle = (Style)dictionary["accountButton"];
-                AuthContentButton = ActualAccount.Login.ToString();
-                ShowPages();
+                new WindowService().HideMainWindow();
+                new AdminWindow().ShowDialog();
             }
             else
             {
-                _windowService.OpenWindow();
+                if (AccountActivated == true)
+                {
+                    AuthContentButton = ActualAccount.Login.ToString();
+                    ShowPages();
+                    
+                }
+                else
+                {
+                    _windowService.OpenWindow();
+                        OnOpenWindow();
+                }
+            }
+        }
+
+        private void ExitAccount()
+        {
+            if (AccountActivated == true)
+            { 
+                 MessageBoxForm.DialogResult dialogResult = MessageBoxForm.MessageBox.Show("Do you want to leave account", "Exit", MessageBoxForm.MessageBoxButtons.YesNo);
+                if (dialogResult == MessageBoxForm.DialogResult.Yes)
+                {
+                    ViewModelBase.ActualAccount = null;
+                    TaskPagesList = null;
+                    ViewModelBase.AccountActivated = false;
+                    AuthContentButton = "Authorize";
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("You dont authorize");
             }
         }
 
@@ -217,6 +253,10 @@ namespace TMS.ViewModel
                     ChangingPage = new DayPlanPage();
                 }
             }
+            else
+            {
+                ChangingPage = null;
+            }
 
         }
         public MainViewModel(IWindowService windowService) 
@@ -230,6 +270,7 @@ namespace TMS.ViewModel
             AuthButtonStyle = (Style)dictionary["authButton"];
             SearchCommand = new RelayCommand(param => SearchPage());
             ChangeCommand = new RelayCommand(param => ChangePage());
+            ExitCommand = new RelayCommand(param => ExitAccount());
         }
 
     }

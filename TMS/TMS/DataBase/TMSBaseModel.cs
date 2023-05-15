@@ -17,5 +17,6 @@ namespace TMS.DataBase
         public DbSet<TaskPage> Tasks { get; set; }
         public DbSet<DayPlanTask> DayPlanTasks { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
+        public DbSet<Pomodoro> Pomodoros { get; set; }
     }
 }

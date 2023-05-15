@@ -28,6 +28,10 @@ namespace TMS.View
         public Notification(Meeting meeting)
         {
             DataContext = new NotificationViewModel(meeting);
+            System.Windows.Threading.DispatcherTimer NotificationTimer = new System.Windows.Threading.DispatcherTimer();
+            NotificationTimer.Tick += new EventHandler(Timer_Click);
+            NotificationTimer.Interval = new TimeSpan(0, 0, 5);
+            NotificationTimer.Start();
             InitializeComponent();
         }
     }

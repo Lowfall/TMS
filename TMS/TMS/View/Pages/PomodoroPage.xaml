@@ -3,11 +3,63 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:TMS.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="750" d:DesignWidth="1000"
       Title="PomodoroPage">
-
+    <Page.Resources>
+        <ResourceDictionary Source="/Dictionaries/DarkTheme.xaml"/>
+    </Page.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Image Source="/Resources/Pomodoro.png" Height="350"></Image>
+            <Label FontSize="50" Content="{Binding RunningTime}"  Foreground="{StaticResource textColor}" HorizontalAlignment="Center"></Label>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                  
+                    <WrapPanel Width="360" HorizontalAlignment="Left" >
+                        <Label Content="Work Time" FontSize="30" Foreground="{StaticResource textColor}" Margin="0 0 10 0"></Label>
+                        <ComboBox FontSize="30" SelectedItem="{Binding WorkingTime,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True" >
+                            <sys:String>1</sys:String>
+                            <sys:String>4</sys:String>
+                            <sys:String>8</sys:String>
+                            <sys:String>12</sys:String>
+                        </ComboBox>
+                        <Label Content="Hours" FontSize="30" Foreground="{StaticResource textColor}" Margin="10 0 0 0"></Label>
+                    </WrapPanel>
+                    <WrapPanel Width="360"  HorizontalAlignment="Left" Grid.Row="1" Margin="0 20 0 0">
+                        <Label Content="Break Time" FontSize="30" Foreground="{StaticResource textColor}" Margin="0 0 10 0"></Label>
+                        <ComboBox FontSize="30"  SelectedItem="{Binding BreakTime, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True">
+                            <sys:String>5</sys:String>
+                            <sys:String>10</sys:String>
+                            <sys:String>15</sys:String>
+                            <sys:String>20</sys:String>
+                        </ComboBox>
+                        <Label Content="Minutes" FontSize="30" Foreground="{StaticResource textColor}" Margin="10 0 0 0"></Label>
+                    </WrapPanel>
+                </Grid>
+                <Button Content="Set" Style="{StaticResource EnteringButton}" Margin="40 0 0 0" FontSize="40" Command="{Binding AddPomodoroCommand}"></Button>
+            </WrapPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="Start" Style="{StaticResource EnteringButton}" Margin="0 0 0 0" FontSize="25"></Button>
+                <Button Content="Pause" Style="{StaticResource EnteringButton}" Margin="0 10 0 0" FontSize="25"></Button>
+                <Button Content="Reset" Style="{StaticResource EnteringButton}" Margin="0 10 0 0" FontSize="25"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

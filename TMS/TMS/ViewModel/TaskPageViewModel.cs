@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using TMS.Commands;
 using TMS.Model;
+using TMS.UOW;
 using TMS.View.Pages;
 
 namespace TMS.ViewModel
@@ -38,6 +39,5 @@ namespace TMS.ViewModel
                 OnPropertyChanged("Type");
             }
         }
-
     }
 }

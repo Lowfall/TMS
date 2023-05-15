@@ -39,11 +39,14 @@
                             <sys:String>MeetingsPage</sys:String>
                             <sys:String>PlansForFuturePage</sys:String>
                         </ComboBox>
-                        <Button Content="Add" Command="{Binding AddPageCommand}" Margin="60 0 60 0" Style="{StaticResource EnterButton}"></Button>
+                        <WrapPanel HorizontalAlignment="Center">
+                        <Button Content="Add" Command="{Binding AddPageCommand}"  Margin="0 0 40 0" Style="{StaticResource EnterButton}"></Button>
+                            <Button Content="Delete" Command="{Binding DeletePageCommand}"  Style="{StaticResource EnterButton}"></Button>
+                        </WrapPanel>
                     </StackPanel>
                 </Border>
 
-                <ListView  SelectedItem="{Binding SelectedPage}" ItemsSource="{Binding TaskPagesList}" IsSynchronizedWithCurrentItem="True"  Background="{StaticResource backMainWindow}" BorderBrush="{StaticResource buttonHovering}" Margin="5 13 5 0" MaxHeight="400" SelectedIndex="-1">
+                <ListView  SelectedItem="{Binding SelectedPage}" ItemsSource="{Binding TaskPagesList}" IsSynchronizedWithCurrentItem="True"  Background="{StaticResource backMainWindow}" BorderBrush="{StaticResource buttonHovering}" Margin="5 13 5 0" MaxHeight="300" SelectedIndex="-1">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <i:InvokeCommandAction Command="{Binding  ChangeCommand}"/>
@@ -55,12 +58,14 @@
                                 <Setter.Value>
                                     <ControlTemplate>
                                         <Border x:Name="PageItem" Background="Transparent" BorderBrush="{StaticResource textColor}" BorderThickness="0 1 0 1"  Margin="5" >
-                                            <StackPanel VerticalAlignment="Center" Margin="10 5 0 5">
-                                                <TextBlock x:Name="NameBox" Text="{Binding Name}" Foreground="{StaticResource textColor}" FontSize="25"></TextBlock>
-                                                <TextBlock x:Name="TypeBox" Text="{Binding Type}" Foreground="{StaticResource textColor}" FontSize="15"></TextBlock>
-                                            </StackPanel>
+                                            <WrapPanel>
+                                                <StackPanel VerticalAlignment="Center" Margin="10 5 0 5">
+                                                    <TextBlock x:Name="NameBox" Text="{Binding Name}" Foreground="{StaticResource textColor}" FontSize="25"></TextBlock>
+                                                    <TextBlock x:Name="TypeBox" Text="{Binding Type}" Foreground="{StaticResource textColor}" FontSize="15"></TextBlock>
+                                                </StackPanel>
+                                            </WrapPanel>
                                         </Border>
-                                        
+
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter TargetName="PageItem" Property="Background" Value="{StaticResource buttonHovering}"/>
@@ -80,6 +85,7 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
             </StackPanel>
+            <Button Content="Exit" Style="{StaticResource EnterButton}" Margin="20 10 20 10" VerticalAlignment="Bottom" Command="{Binding ExitCommand}"></Button>
         </Grid>
         <Frame Content="{Binding ChangingPage}" Grid.Column="1"  NavigationUIVisibility="Hidden" Margin="20" Panel.ZIndex ="2">
 

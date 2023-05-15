@@ -17,7 +17,30 @@ namespace TMS.UOW
         private TaskPagesRepository tasksRepository;
         private DayPlanTaskRepository dayPlanTaskRepository;
         private MeetingRepository meetingRepository;
+        private PomodoroRepository pomodoroRepository;
+        private AdminRepository adminRepository;
 
+        public AdminRepository Admins
+        {
+            get
+            {
+                if(adminRepository == null)
+                {
+                    adminRepository = new AdminRepository(db);
+                }
+                return adminRepository;
+            }
+        }
+        public PomodoroRepository Pomodoros {
+            get
+            {
+                if (pomodoroRepository == null)
+                {
+                    pomodoroRepository = new PomodoroRepository(db);
+                }
+                return pomodoroRepository;
+            }
+        }
         public MeetingRepository Meetings
         {
             get

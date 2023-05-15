@@ -13,6 +13,7 @@ namespace TMS.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static bool AccountActivated = false;
+        public static bool AdminActivated = false;
         public static Client ActualAccount = null;
 
         protected void OnPropertyChanged(string propertyName)

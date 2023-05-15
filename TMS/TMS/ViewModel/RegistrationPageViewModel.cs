@@ -73,20 +73,28 @@ namespace TMS.ViewModel
 
         private async void Add()
         {
-            using (UnitOfWork uow = new UnitOfWork())
+            try
             {
-                foreach(var item in uow.Clients.GetAll().ToList())
+
+                using (UnitOfWork uow = new UnitOfWork())
                 {
-                    if(item.Login == ClientLogin)
+                    foreach (var item in uow.Clients.GetAll().ToList())
                     {
-                        MessageBox.Show("This user is already registered");
-                        return;
+                        if (item.Login == ClientLogin)
+                        {
+                            MessageBox.Show("This user is already registered");
+                            return;
+                        }
                     }
+                    var client = new Client(ClientLogin, ClientPassword.GetHashCode().ToString());
+                    uow.Clients.Add(client);
+                    uow.Save();
+                    MessageBox.Show("You have made an account, now, please authorize");
                 }
-                var client = new Client(ClientLogin, ClientPassword.GetHashCode().ToString());
-                uow.Clients.Add(client);
-                uow.Save();
-                MessageBox.Show("You have made an account, now, please authorize");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Validation Error");
             }
         }
 

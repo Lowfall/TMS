@@ -183,20 +183,18 @@ namespace TMS.ViewModel
             
             CurrentTime = string.Format("{0}:{1}", d.Hour.ToString("00"), d.Minute.ToString("00"));
         }
-        private void NotificationTimer_Click(object sender, EventArgs e)
+        private async void NotificationShow()
         {
-            DateTime d;
-            d = DateTime.Now;
             using (UnitOfWork uow = new UnitOfWork())
             {
                 foreach(var item in uow.Meetings.GetAll().ToList())
                 {
-                    if(item.NotificationDateTime.Date == DateTime.Now.Date && item.NotificationDateTime.TimeOfDay > DateTime.Now.TimeOfDay && item.PageId ) //добавить проверку
+
+                    if(item.NotificationDateTime.Date == DateTime.Now.Date && item.NotificationDateTime.TimeOfDay > DateTime.Now.TimeOfDay && item.PageId == MainViewModel.PageId ) 
                     {
                        var notification = new Notification(item);
                         notification.Show();
-                        Thread.Sleep(9000);
-                        notification.Close();
+
                     }
                 }
             }
@@ -214,10 +212,7 @@ namespace TMS.ViewModel
             Timer.Tick += new EventHandler(Timer_Click);
             Timer.Interval = new TimeSpan(0, 0, 1);
             Timer.Start();
-            System.Windows.Threading.DispatcherTimer NotificationTimer = new System.Windows.Threading.DispatcherTimer();
-            NotificationTimer.Tick += new EventHandler(NotificationTimer_Click);
-            NotificationTimer.Interval = new TimeSpan(0,0,20);
-            NotificationTimer.Start();
+            NotificationShow();
         }
     }
 }
